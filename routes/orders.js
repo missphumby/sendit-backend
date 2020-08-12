@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Order = require("../models/order");
 // const mongoose = require("mongoose");
-const { authorizeUser } = require("../auth/VerifyToken");
+const { authorizeUser } = require("../auth/verifyToken");
 
 router.get("/posts", (req, res) => {
   res.send("they are on home");

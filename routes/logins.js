@@ -6,7 +6,7 @@ require("dotenv").config();
 const db = require("../models");
 const Role = db.role;
 
-const { generateToken, authorizeUser } = require("../auth/VerifyToken");
+const { generateToken, authorizeUser } = require("../auth/verifyToken");
 
 const User = require("../models/usersReg");
 
