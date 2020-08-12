@@ -16,7 +16,7 @@ const Role = db.role;
 // app.use(adminBro.routes.rootPath, router);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(express.static(path.join(__dirname, "../front")));
+//app.use(express.static(path.join(__dirname, "../front")));
 app.use(morgan('dev'))
 app.use(cors())
 
@@ -43,9 +43,13 @@ app.use('/signup', postsRoute);
 app.use('/login', sendRoute);
 app.use('/order', orderRoute)
 mongoose.Promise = global.Promise;
-app.get('/*', (req, res) =>{
-    res.sendFile(path.join(__dirname, "../front", "index.html"))
-});
+
+app.get("/", (req, res) => {
+  res.send("app is running")
+})
+//app.get('/*', (req, res) =>{
+//    res.sendFile(path.join(__dirname, "../front", "index.html"))
+//});
 
 //Roles
 function initial() {
