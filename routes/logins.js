@@ -24,6 +24,7 @@ router.post("/", (req, res, next) => {
         if (err) {
           res.status(401).json({
             error: err,
+            msg: "incorrect password"
           });
         }
         if (result) {
