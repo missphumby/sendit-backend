@@ -19,10 +19,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 //app.use(express.static(path.join(__dirname, "../front")));
 app.use(morgan('dev'))
 app.use(cors())
-app.use(toastr())
+
 //solving cors issue
 app.use((req, res, next)=>{
-    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Origin", "https://missphumby.github.io")
     res.header("Access-Control-Allow-Credentials: true") 
     res.header("Access-Control-Allow-headers", 
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
