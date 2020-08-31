@@ -20,21 +20,20 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(morgan('dev'))
 app.use(cors())
 app.use(toastr())
-
 //solving cors issue
 app.use((req, res, next)=>{
-  res.header("Access-Control-Allow-Origin: true")
     res.header("Access-Control-Allow-Origin", "https://missphumby.github.io")
     res.header("Access-Control-Allow-Credentials: true") 
     res.header("Access-Control-Allow-headers", 
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    )
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+    // res.header("Access-Control-Max-Age", "1000")
     if (req.method == "OPTIONS"){
-        res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET")
+        res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET, OPTIONS")
         return res.status(200).json({})
     }
     next()
 })
+
 
 // import route
 const postsRoute = require('./routes/register');
