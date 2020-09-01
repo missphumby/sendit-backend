@@ -34,6 +34,10 @@ const postSchema = mongoose.Schema(
       type: String,
        required: true,
     },
+   confirm_password: {
+      type: String,
+       required: true,
+    },
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,

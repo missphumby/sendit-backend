@@ -16,13 +16,13 @@ const toastr = require('toastr')
 // app.use(adminBro.routes.rootPath, router);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(express.static(path.join(__dirname, "../front")));
+// app.use(express.static(path.join(__dirname, "../front")));
 app.use(morgan('dev'))
 app.use(cors())
 // app.use(toastr())
 //solving cors issue
 app.use((req, res, next)=>{
-    res.header("Access-Control-Allow-Origin", "http://localhost:8080")
+    res.header("Access-Control-Allow-Origin", "*")
     // res.header("Access-Control-Allow-Credentials: true") 
     res.header("Access-Control-Allow-Headers", 
     "Origin, X-Requested-With, Content-Type, Accept, Authorization")
@@ -49,9 +49,9 @@ mongoose.Promise = global.Promise;
 app.get("/", (req, res) => {
   res.send("app is running")
 })
-app.get('/*', (req, res) =>{
-   res.sendFile(path.join(__dirname, "../front", "index.html"))
-});
+// app.get('/*', (req, res) =>{
+//    res.sendFile(path.join(__dirname, "../front", "index.html"))
+// });
 
 //Roles
 function initial() {
