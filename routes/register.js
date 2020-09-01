@@ -33,6 +33,7 @@ router.post("/", (req, res, next) => {
               email,
               mobile,
               password: hash,
+              confirm_password: hash
             };
 
             User.create(user, (err, user) => {
