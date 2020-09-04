@@ -71,6 +71,23 @@ router.patch("/:orderId", async (req, res) => {
   }
 });
 
+
+router.patch("/:orderId/cancel", async (req, res) => {
+  try {
+    const updatedOrder = await Order.findOneAndUpdate(
+      { orderId: req.params.orderId },
+      { $set : { status : "Cancelled" } },
+      { new: true }
+    );
+    res.status(200).send({
+      success: true,
+      data: updatedOrder,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+});
+
 router.delete("/:orderId", async (req, res) => {
   try {
     const removedPost = await Order.remove({ orderId: req.params.orderId });
