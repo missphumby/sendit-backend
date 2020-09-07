@@ -77,4 +77,10 @@ router.get("/me/:id", authorizeUser, (req, res) => {
 });
 
 
+// module.exports.isLoggedIn = function(callback) {
+//   User.findById(sessions.user_id, function(err, user) {
+//       if (err) throw err;
+//       callback(user);
+//   });
+// };
 module.exports = router;
