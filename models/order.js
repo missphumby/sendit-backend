@@ -26,13 +26,13 @@ const orderSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  price: {
-    type: Number,
-    default: "1000"
+  current_loc: {
+    type: String,
+    
   },
   status: {
     type: String,
-    default: "In transit",
+    default: "Ready-to-pickup",
   },
 });
 
