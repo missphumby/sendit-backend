@@ -28,6 +28,7 @@ const orderSchema = mongoose.Schema({
   },
   current_loc: {
     type: String,
+    default: ""
     
   },
   status: {
