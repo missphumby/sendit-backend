@@ -46,7 +46,7 @@ router.get("/:userId", authorizeUser, async (req, res, next) => {
   if (req.decoded.id == req.params.userId) {
     Order.find({ userId: req.params.userId }, (err, data) => {
       if (err) {
-        res.status(500).send("There was a problem finding the order.");
+        res.status(500).send({ msg: "You do not have any orders yet"});
       }
       res.status(200).send({ data });
     });
