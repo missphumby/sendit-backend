@@ -16,8 +16,7 @@ const toastr = require('toastr')
 // app.use(adminBro.routes.rootPath, router);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
-  app.use(express.static(path.join(__dirname, "../front")));
-app.use(morgan('dev'))
+  app.use(morgan('dev'))
 app.use(cors())
 // app.use(toastr())
 //solving cors issue
@@ -49,9 +48,9 @@ mongoose.Promise = global.Promise;
 app.get("/", (req, res) => {
   res.send("app is running")
 })
-app.get('/*', (req, res) =>{
-   res.sendFile(path.join(__dirname, "../front", "index.html"))
-});
+// app.get('/*', (req, res) =>{
+//    res.sendFile(path.join(__dirname, "../front", "index.html"))
+// });
 
 //Roles
 function initial() {

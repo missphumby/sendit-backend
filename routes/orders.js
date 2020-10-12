@@ -17,7 +17,7 @@ router.post("/", authorizeUser, (req, res) => {
       } else {
         res.json({ data });
       }
-    });
+    })
   }else {
     res.json({error: "can't create order for another user"})
   }
