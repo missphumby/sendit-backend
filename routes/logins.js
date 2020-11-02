@@ -24,7 +24,7 @@ router.post("/", (req, res, next) => {
         if (err) {
           res.status(401).json({
             error: err,
-            msg: "incorrect password"
+            message: "incorrect password"
           });
         }
         if (result) {
@@ -36,7 +36,6 @@ router.post("/", (req, res, next) => {
                 msg: "User logged in successfully!",
                 user: user[0],
                 token,
-
               });
               
             }
