@@ -48,7 +48,7 @@ const findusersRoute = require('./routes/findUsers')
 app.use('/signup', postsRoute);
 app.use('/login', sendRoute);
 app.use('/order', orderRoute);
-app.use('/forgotpassword', forgotRoute)
+app.use('/forgotPassword', forgotRoute)
 app.use('/reset', resetRoute)
 app.use('/updatePassword', updateRoute)
 app.use('/updatePasswordViaEmail', viaEmailRoute)
