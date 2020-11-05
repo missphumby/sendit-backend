@@ -19,7 +19,7 @@ const nodemailer = require('nodemailer');
     .then((user) => {
       if (user === null) {
         console.error('email not in database');
-        res.status(403).send({message: 'email not in db'});
+        res.status(403).send({data: 'email not in db'});
       } else {
         const token = crypto.randomBytes(20).toString('hex');
         user.update({
@@ -53,7 +53,7 @@ const nodemailer = require('nodemailer');
             console.error('there was an error: ', err);
           } else {
             console.log('here is the res: ', response);
-            res.status(200).json('recovery email sent');
+            res.status(200).json({data: 'recovery email sent'});
           }
         });
       }
