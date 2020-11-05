@@ -26,11 +26,12 @@ router.post("/", (req, res, next) => {
           if (err) {
             return res.status(500).json({ error: err });
           } else {
-            const { firstname, lastname, email, mobile } = req.body;
+            const { firstname, lastname, email,  username, mobile } = req.body;
             const user = {
               firstname,
               lastname,
               email,
+              username,
               mobile,
               password: hash,
               confirm_password: hash

@@ -7,14 +7,13 @@ const postSchema = mongoose.Schema(
 
     firstname: {
       type: String,
-      required: true,
-      // unique: true,
+      required: true
     },
 
     lastname: {
       type: String,
-       required: true,
-      // unique: true,
+       required: true
+      
     },
 
     email: {
@@ -24,6 +23,11 @@ const postSchema = mongoose.Schema(
       // match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
  },
 
+ username: {
+  type: String,
+   required: true,
+  
+},
     mobile: {
       type: String,
        required: true,
@@ -38,6 +42,8 @@ const postSchema = mongoose.Schema(
       type: String,
        required: true,
     },
+    resetPasswordToken: {type: String},
+    resetPasswordExpires: {type: Date},
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,

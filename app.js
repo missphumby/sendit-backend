@@ -38,11 +38,22 @@ app.use((req, res, next)=>{
 const postsRoute = require('./routes/register');
 const sendRoute = require('./routes/logins');
 const orderRoute = require('./routes/orders')
+const forgotRoute = require('./routes/forgotpassword')
+const resetRoute = require('./routes/resetpassword')
+const updateRoute = require('./routes/updatepassword')
+const viaEmailRoute = require('./routes/UpdatepasswordviaEmail')
+const findusersRoute = require('./routes/findUsers')
 
 // connect to DB
 app.use('/signup', postsRoute);
 app.use('/login', sendRoute);
-app.use('/order', orderRoute)
+app.use('/order', orderRoute);
+app.use('/forgotpassword', forgotRoute)
+app.use('/reset', resetRoute)
+app.use('/updatePassword', updateRoute)
+app.use('/updatePasswordViaEmail', viaEmailRoute)
+app.use('/findUser', findusersRoute)
+
 mongoose.Promise = global.Promise;
 
 app.get("/", (req, res) => {
