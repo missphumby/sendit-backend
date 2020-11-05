@@ -1,3 +1,4 @@
+const express = require("express");
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 const router = express.Router();
@@ -15,9 +16,10 @@ const BCRYPT_SALT_ROUNDS = 12;
         console.error(info.message);
         res.status(403).send(info.message);
       } else {
-        User.findOne({
+        User.find({
             username: req.body.username
-        }).then((userInfo) => {
+        }).exec()
+        .then((userInfo) => {
           if (userInfo != null) {
             console.log('user found in db');
             bcrypt.hash(req.body.password, BCRYPT_SALT_ROUNDS)

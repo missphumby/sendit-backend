@@ -1,3 +1,4 @@
+const express = require("express");
 const crypto = require('crypto')
 require('dotenv').config();
 const router = express.Router();
@@ -11,9 +12,10 @@ const nodemailer = require('nodemailer');
       res.status(400).send('email required');
     }
     console.error(req.body.email);
-    User.findOne({
+    User.find({
         email: req.body.email
     })
+    .exec()
     .then((user) => {
       if (user === null) {
         console.error('email not in database');

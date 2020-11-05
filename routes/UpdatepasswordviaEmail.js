@@ -1,3 +1,4 @@
+const express = require("express");
 const bcrypt = require('bcrypt')
 const User = require('../models/usersReg')
 const router = express.Router();
@@ -11,7 +12,8 @@ const BCRYPT_SALT_ROUNDS = 12;
         resetPasswordExpires: {
           $gt: Date.now(),
         },
-    }).then(user => {
+    }).exec()
+    .then(user => {
       if (user == null) {
         console.error('password reset link is invalid or has expired');
         res.status(403).send('password reset link is invalid or has expired');
