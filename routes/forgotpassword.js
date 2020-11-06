@@ -19,7 +19,7 @@ const nodemailer = require('nodemailer');
     .then((user) => {
       if (user === null) {
         console.error('email not in database');
-        res.status(403).send('email not in db');
+        res.status(403).send({message: 'email not in db', error});
       } else {
         const token = crypto.randomBytes(20).toString('hex');
         User.update({
@@ -37,7 +37,7 @@ const nodemailer = require('nodemailer');
 
         const mailOptions = {
           from: 'mongodbDemoEmail@gmail.com',
-          to: "jamiuaminat@yahoo.com",
+          to: "funbyuniquebeads@gmail.com",
           subject: 'Link To Reset Password',
           text:
             'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n'
@@ -53,7 +53,7 @@ const nodemailer = require('nodemailer');
             console.error('there was an error: ', err);
           } else {
             console.log('here is the res: ', response);
-            res.status(200).json({msg: 'recovery email sent', token: token});
+            res.status(200).json({message: 'recovery email sent', token: token});
           }
         });
       }
