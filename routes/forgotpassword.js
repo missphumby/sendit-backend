@@ -51,7 +51,6 @@ const nodemailer = require('nodemailer');
         transporter.sendMail(mailOptions, (err, response) => {
           if (err) {
             console.error('there was an error: ', err);
-            res.status(403).send({message: 'emailAdd not in database', error});
           } else {
             console.log('here is the res: ', response);
             res.status(200).json({message: 'recovery email sent', token: token});
