@@ -9,7 +9,7 @@ const nodemailer = require('nodemailer');
 
   router.post('/', (req, res) => {
     if (req.body.email === '') {
-      res.status(400).send('email required');
+      res.status(400).json({'email required'});
     }
     console.error(req.body.email);
     User.find({
@@ -19,7 +19,7 @@ const nodemailer = require('nodemailer');
     .then((user) => {
       if (user === null) {
         console.error('email not in database');
-        res.status(403).send({message: 'email not in db', error});
+        res.status(403).json({message: 'email not in db', error});
       } else {
         const token = crypto.randomBytes(20).toString('hex');
         User.update({
