@@ -19,10 +19,10 @@ const nodemailer = require('nodemailer');
     .then((user) => {
       if (user === null) {
         console.error('email not in database');
-        res.status(403).send({data: 'email not in db'});
+        res.status(403).send('email not in db');
       } else {
         const token = crypto.randomBytes(20).toString('hex');
-        user.update({
+        User.update({
           resetPasswordToken: token,
           resetPasswordExpires: Date.now() + 3600000,
         });
@@ -30,14 +30,14 @@ const nodemailer = require('nodemailer');
         const transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: process.env.EMAIL_ADDRESS,
-            pass: process.env.EMAIL_PASSWORD,
+            user: `${process.env.EMAIL_ADDRESS}`,
+            pass: `${process.env.EMAIL_PASSWORD}`,
           },
         });
 
         const mailOptions = {
           from: 'mongodbDemoEmail@gmail.com',
-          to: `${user.email}`,
+          to: "jamiuaminat@yahoo.com",
           subject: 'Link To Reset Password',
           text:
             'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n'
@@ -53,7 +53,7 @@ const nodemailer = require('nodemailer');
             console.error('there was an error: ', err);
           } else {
             console.log('here is the res: ', response);
-            res.status(200).json({data: 'recovery email sent'});
+            res.status(200).json({msg: 'recovery email sent', token: token});
           }
         });
       }

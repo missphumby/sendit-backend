@@ -9,7 +9,7 @@ const User = require("../models/usersReg");
           resetPasswordToken: req.body.resetPasswordToken,
           resetPasswordExpires: {$gt: Date.now()}
         })
-        .exec()
+        // .exec()
         .then((user) => {
         if (user == null) {
           console.error('password reset link is invalid or has expired');
