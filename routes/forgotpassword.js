@@ -9,7 +9,7 @@ const nodemailer = require('nodemailer');
 
   router.post('/', (req, res) => {
     if (req.body.email === '') {
-      res.status(400).json({'email required'});
+      res.status(400).json({message: 'email required'});
     }
     console.error(req.body.email);
     User.find({
