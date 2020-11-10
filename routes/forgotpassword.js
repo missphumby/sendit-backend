@@ -4,6 +4,7 @@ require('dotenv').config();
 const router = express.Router();
 const User = require("../models/usersReg");
 const nodemailer = require('nodemailer');
+const smtpTransport = require('nodemailer-smtp-transport');
 
 // module.exports = (router) => {
 
@@ -27,13 +28,14 @@ const nodemailer = require('nodemailer');
           resetPasswordExpires: Date.now() + 3600000,
         });
 
-        const transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport( smtpTransport ({
           service: 'gmail',
           auth: {
             user: `${process.env.EMAIL_ADDRESS}`,
             pass: `${process.env.EMAIL_PASSWORD}`,
           },
-        });
+        })
+        );
 
         const mailOptions = {
           from: 'mongodbDemoEmail@gmail.com',
