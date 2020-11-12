@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require('../models/usersReg')
 const Role = require('../models/role')
-
+require("dotenv").config()
 
 //using jwt to endcode user information and returning it back 
 // as a token so they use it to make requests
@@ -14,6 +14,7 @@ module.exports.generateToken = (user, callback) => {
       email: user._email,
       firstname: user.firstname,
       password: user.password,
+      username: user.username
     },
     process.env.JWT_KEY,
     { expiresIn: "1h" },
