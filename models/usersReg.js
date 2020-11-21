@@ -42,6 +42,9 @@ const postSchema = mongoose.Schema(
       type: String,
        required: true,
     },
+    comment:{
+      type: String
+    },
     resetPasswordToken: {type: String},
     resetPasswordExpires: {type: Date},
     roles: [
