@@ -24,7 +24,7 @@ router.post("/", (req, res, next) => {
         if (err) {
           res.status(401).json({
             error: err,
-            message: "incorrect password"
+            message: "incorrect password",
           });
         }
         if (result) {
@@ -37,9 +37,7 @@ router.post("/", (req, res, next) => {
                 user: user[0],
                 token,
               });
-              
             }
-
           });
         } else {
           res.status(401).json({
@@ -69,12 +67,11 @@ router.get("/me/:id", authorizeUser, (req, res) => {
       .then((data) => {
         res.status(200).json({ success: true, data });
       })
-      .catch(err => res.status(404).send("No user found."))
+      .catch((err) => res.status(404).send("No user found."));
   } else {
     res.json({ error: "can not fetch data for another user" });
   }
 });
-
 
 // module.exports.isLoggedIn = function(callback) {
 //   User.findById(sessions.user_id, function(err, user) {

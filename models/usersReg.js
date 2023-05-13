@@ -7,13 +7,12 @@ const postSchema = mongoose.Schema(
 
     firstname: {
       type: String,
-      required: true
+      required: true,
     },
 
     lastname: {
       type: String,
-       required: true
-      
+      required: true,
     },
 
     email: {
@@ -21,41 +20,40 @@ const postSchema = mongoose.Schema(
       required: true,
       unique: true,
       // match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
- },
+    },
 
- username: {
-  type: String,
-   required: true,
-  
-},
+    username: {
+      type: String,
+      required: true,
+    },
     mobile: {
       type: String,
-       required: true,
+      required: true,
       // unique: true,
     },
 
     password: {
       type: String,
-       required: true,
+      required: true,
     },
-   confirm_password: {
+    confirm_password: {
       type: String,
-       required: true,
+      required: true,
     },
-    comment:{
-      type: String
+    comment: {
+      type: String,
     },
-    resetPasswordToken: {type: String},
-    resetPasswordExpires: {type: Date},
+    resetPasswordToken: { type: String },
+    resetPasswordExpires: { type: Date },
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Role"
-      }
-    ]
+        ref: "Role",
+      },
+    ],
   },
   { _id: false }
 );
 
 postSchema.plugin(AutoIncrement);
-module.exports = mongoose.model("users", postSchema);
+module.exports = mongoose.model("sendit_users", postSchema);

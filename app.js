@@ -11,14 +11,16 @@ const db = require("./models");
 const Role = db.role;
 const toastr = require('toastr')
 
-  
+  localhost://8080
 // middlewares
 // app.use(adminBro.routes.rootPath, router);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
   app.use(morgan('dev'))
 app.use(cors())
-// app.use(toastr())
+
+
+
 //solving cors issue
 app.use((req, res, next)=>{
     res.header("Access-Control-Allow-Origin", "*")

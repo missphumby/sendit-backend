@@ -30,15 +30,10 @@ const smtpTransport = require('nodemailer-smtp-transport');
 
         const transporter = nodemailer.createTransport( smtpTransport ({
           service: 'gmail',
-          port: 2525,
-          secure: false,
           auth: {
             user: `${process.env.EMAIL_ADDRESS}`,
             pass: `${process.env.EMAIL_PASSWORD}`,
           },
-          tls:{
-            rejectUnauthorized:false
-          }
         })
         );
 

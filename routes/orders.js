@@ -10,22 +10,22 @@ router.get("/posts", (req, res) => {
 
 router.post("/", authorizeUser, (req, res) => {
   const orderDetails = req.body;
-  if(req.decoded.id == req.body.userId){
+  if (req.decoded.id == req.body.userId) {
     Order.create(orderDetails, (err, data) => {
       if (err) {
         res.json({ err });
       } else {
         res.json({ data });
       }
-    })
-  }else {
-    res.json({error: "can't create order for another user"})
+    });
+  } else {
+    res.json({ error: "can't create order for another user" });
   }
 });
 
 // router.get('/:userId', (req, res) => {
 //     Order.findById({userId: req.params.userId}, (err, data) => {
-//         if(err) throw err;
+//         if(err) throw err
 //         res.json({data})
 //     })
 // })
@@ -55,28 +55,11 @@ router.get("/:userId", authorizeUser, async (req, res, next) => {
   }
 });
 
-router.patch("/:orderId", async (req, res) => {
-  try {
-    const updatedOrder = await Order.findOneAndUpdate(
-      { orderId: req.params.orderId },
-      req.body,
-      { new: true }
-    );
-    res.status(200).send({
-      success: true,
-      data: updatedOrder,
-    });
-  } catch (err) {
-    res.status(500).json({ error: err });
-  }
-});
-
-
 router.patch("/:orderId/cancel", async (req, res) => {
   try {
     const updatedOrder = await Order.findOneAndUpdate(
       { orderId: req.params.orderId },
-      { $set : { status : "Cancelled" } },
+      { $set: { status: "Cancelled" } },
       { new: true }
     );
     res.status(200).send({
@@ -98,3 +81,22 @@ router.delete("/:orderId", async (req, res) => {
 });
 
 module.exports = router;
+
+// const constantMock = window.fetch;
+//  window.fetch = function() {
+//   console.log(arguments);
+
+//     return new Promise((resolve, reject) => {
+//         constantMock.apply(this, arguments)
+//             .then((response) => {
+//                 if(response.url.indexOf("/api/") > -1 && response.type != "cors"){  //
+//                     console.log(response.body); //here I just want to save body json to variable, I use this data in content.js in chrome extension
+
+//                 }
+//                 resolve(response);
+//             })
+//             .catch((error) => {
+//                 reject(response);
+//             })
+//     });
+//  }

@@ -4,7 +4,7 @@ const User = require('../models/usersReg')
 const router = express.Router()
 
 
-    router.get('/', (req, res, next) => {
+    router.get('/users', (req, res, next) => {
       passport.authenticate('jwt', { session: false }, (err, user, info) => {
         if (err) {
           console.log(err);

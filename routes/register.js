@@ -109,6 +109,7 @@ router.post("/", (req, res, next) => {
       success: "User created successfully!",
       user,
       token,
+
     });
 }
 
