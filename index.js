@@ -45,6 +45,12 @@ const updateRoute = require("./routes/updatepassword");
 const viaEmailRoute = require("./routes/UpdatepasswordviaEmail");
 const findusersRoute = require("./routes/findUsers");
 
+app.use(
+  cors({
+    origin: "*", // location of react frontend
+    credentials: true,
+  })
+);
 // connect to DB
 app.use("/signup", postsRoute);
 app.use("/login", sendRoute);
@@ -64,12 +70,7 @@ app.get("/", (req, res) => {
 //    res.sendFile(path.join(__dirname, "../front", "index.html"))
 // });
 
-app.use(
-  cors({
-    origin: "*", // location of react frontend
-    credentials: true,
-  })
-);
+
 //Roles
 function initial() {
   Role.estimatedDocumentCount((err, count) => {
