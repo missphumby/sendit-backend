@@ -14,7 +14,7 @@ const toastr = require("toastr");
 //8080
 // middlewares
 // app.use(adminBro.routes.rootPath, router);
-localhost: app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 // app.use(cors());
