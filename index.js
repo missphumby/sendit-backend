@@ -17,7 +17,7 @@ const toastr = require("toastr");
 localhost: app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-app.use(cors());
+// app.use(cors());
 
 //solving cors issue
 app.use((req, res, next) => {
@@ -69,7 +69,6 @@ app.get("/", (req, res) => {
 // app.get('/*', (req, res) =>{
 //    res.sendFile(path.join(__dirname, "../front", "index.html"))
 // });
-
 
 //Roles
 function initial() {
