@@ -91,7 +91,7 @@ router.patch("/:orderId/cancel", async (req, res) => {
 //     });
 // });
 //patch request
-router.patch("/:orderId", (req, res) => {
+router.patch("/:orderId", authorizeUser, (req, res) => {
   const id = req.params.orderId;
   const newData = req.body;
   Order.update({ _id: id }, newData)
