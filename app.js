@@ -9,7 +9,7 @@ const cors = require("cors");
 require("dotenv").config();
 const db = require("./models");
 const Role = db.role;
-const toastr = require("toastr");
+// const toastr = require("toastr");
 
 //8080
 // middlewares
