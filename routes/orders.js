@@ -72,24 +72,24 @@ router.patch("/:orderId/cancel", async (req, res) => {
 });
 
 //update request
-router.put("/:id", authorizeUser, (req, res) => {
-  const id = req.params.id;
-  const newData = req.body;
-  Order.update({ _id: id }, newData)
-    .exec()
-    .then((result) => {
-      res.status(200).json({
-        message: "data updated",
-        updatedData: result,
-      });
-    })
-    .catch((err) => {
-      res.status(401).json({
-        message: "an error occured",
-        error: err,
-      });
-    });
-});
+// router.put("/:id", authorizeUser, (req, res) => {
+//   const id = req.params.id;
+//   const newData = req.body;
+//   Order.update({ _id: id }, newData)
+//     .exec()
+//     .then((result) => {
+//       res.status(200).json({
+//         message: "data updated",
+//         updatedData: result,
+//       });
+//     })
+//     .catch((err) => {
+//       res.status(401).json({
+//         message: "an error occured",
+//         error: err,
+//       });
+//     });
+// });
 //patch request
 router.patch("/:orderId", (req, res) => {
   const id = req.params.orderId;
