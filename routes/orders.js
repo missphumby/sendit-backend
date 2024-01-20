@@ -91,20 +91,88 @@ router.patch("/:orderId/cancel", async (req, res) => {
 //     });
 // });
 //patch request
+// router.patch("/:orderId", async (req, res) => {
+//   try {
+//     const id = req.params.orderId;
+//     const newData = req.body;
+//     console.log(req.body);
+
+//     const result = await Order.findOneAndUpdate(
+//       { orderId: id },
+//       { $set: newData },
+//       { new: true } // Return the updated document
+//     );
+
+//     return res.status(200).json({
+//       message: "data patched",
+//       updatedData: result,
+//     });
+//   } catch (err) {
+//     res.status(500).json({
+//       message: "an error occurred",
+//       error: err,
+//     });
+//   }
+// });
+
+// router.patch("/:orderId", async (req, res) => {
+//   try {
+//     const id = req.params.orderId;
+//     const newData = req.body;
+//     console.log(req.body);
+
+//     const order = await Order.findOne({ orderId: id });
+//    console.log(order)
+//     if (!order) {
+//       return res.status(404).json({
+//         message: "Order not found",
+//       });
+//     }
+// console.log('got here')
+//     // Update the order fields
+//     order.destination = newData.destination;
+//     // Add more fields as needed
+//        console.log(order.destination)
+//     const updatedOrder = await order.save();
+
+//     return res.status(200).json({
+//       message: "data patched",
+//       updatedData: updatedOrder,
+//     });
+//   } catch (err) {
+//     res.status(500).json({
+//       message: "an error occurred",
+//       error: err,
+//     });
+//   }
+// });
+
 router.patch("/:orderId", async (req, res) => {
   try {
     const id = req.params.orderId;
     const newData = req.body;
     console.log(req.body);
-    const result = await Order.update({ orderId: id }, newData);
+
+    const updatedOrder = await Order.findOneAndUpdate(
+      { orderId: id },
+      { $set: newData },
+      { new: true }
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
 
     return res.status(200).json({
       message: "data patched",
-      updatedData: result,
+      updatedData: updatedOrder,
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({
-      message: "an error occured",
+      message: "an error occurred",
       error: err,
     });
   }
