@@ -71,6 +71,48 @@ router.patch("/:orderId/cancel", async (req, res) => {
   }
 });
 
+//update request
+router.put('/:id', authorizeUser, (req, res) =>{
+    const id = req.params.id;
+    const newData = req.body;
+    Order.update({_id: id}, newData)
+    .exec()
+    .then((result)=> {
+        res.status(200).json({
+            message: 'data updated',
+            updatedData: result
+        })
+    })
+    .catch((err) => {
+        res.status(401).json({
+            message: 'an error occured',
+            error: err
+        })
+    })
+    
+});
+//patch request
+router.patch('/:orderId', authorizeUser, (req, res) =>{
+    const id = req.params.orderId;
+    const newData = req.body;
+    Order.update({_id: id}, newData)
+    .exec()
+    .then((result)=> {
+        console.log(result);
+        res.status(200).json({
+            message: 'data patched',
+            updatedData: result
+        })
+    })
+    .catch((err) => {
+        res.status(401).json({
+            message: 'an error occured',
+            error: err
+        })
+    })  
+});
+
+
 router.delete("/:orderId", async (req, res) => {
   try {
     const removedPost = await Order.remove({ orderId: req.params.orderId });
@@ -82,21 +124,4 @@ router.delete("/:orderId", async (req, res) => {
 
 module.exports = router;
 
-// const constantMock = window.fetch;
-//  window.fetch = function() {
-//   console.log(arguments);
 
-//     return new Promise((resolve, reject) => {
-//         constantMock.apply(this, arguments)
-//             .then((response) => {
-//                 if(response.url.indexOf("/api/") > -1 && response.type != "cors"){  //
-//                     console.log(response.body); //here I just want to save body json to variable, I use this data in content.js in chrome extension
-
-//                 }
-//                 resolve(response);
-//             })
-//             .catch((error) => {
-//                 reject(response);
-//             })
-//     });
-//  }
