@@ -22,7 +22,7 @@
     "jsonwebtoken": "^8.5.1",
     "mailgun-js": "^0.22.0",
     "mongodb": "^3.5.9",
-    "mongoose": "^5.9.22",
+    "mongoose": "^4.1.12",
     "mongoose-auto-increment": "^5.0.1",
     "mongoose-sequence": "^5.2.2",
     "morgan": "^1.10.0",
