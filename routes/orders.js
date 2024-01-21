@@ -43,15 +43,24 @@ router.get("/", async (req, res, next) => {
 
 //find specific user orders by userId
 router.get("/:userId", authorizeUser, async (req, res, next) => {
-  if (req.decoded.id == req.params.userId) {
-    Order.find({ userId: req.params.userId }, (err, data) => {
-      if (err) {
-        res.status(500).send("There was a problem finding the order.");
+  try {
+    if (req.decoded.id == req.params.userId) {
+      const updatedOrder = await Order.find({ userId: req.params.userId });
+      if (!updatedOrder) {
+        return res.status(404).json({
+          message: "Order not found",
+        });
       }
-      res.status(200).send({ data });
-    });
-  } else {
-    res.json({ error: "Can't fetch orders for another user" });
+
+      return res.status(200).json({
+        message: "data fetched",
+        data: updatedOrder,
+      });
+    } else {
+      res.json("cant fetch data");
+    }
+  } catch (err) {
+    res.status(500).json({ error: err });
   }
 });
 
@@ -71,7 +80,7 @@ router.patch("/:orderId/cancel", async (req, res) => {
   }
 });
 
-// edit 
+// edit
 router.patch("/:orderId", async (req, res) => {
   try {
     const id = req.params.orderId;
